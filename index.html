@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rshare - Fast, Secure, Anonymous File Sharing</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo-container">
+                <div class="logo">
+                    <i class="fas fa-share-alt"></i>
+                    <span>Rshare</span>
+                </div>
+                <p class="tagline">Fast • Secure • Anonymous</p>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Mode Selection -->
+            <div class="mode-selector">
+                <button class="mode-btn active" data-mode="send">
+                    <i class="fas fa-upload"></i>
+                    Send File
+                </button>
+                <button class="mode-btn" data-mode="receive">
+                    <i class="fas fa-download"></i>
+                    Receive File
+                </button>
+            </div>
+
+            <!-- Send Mode -->
+            <div class="mode-content send-mode active">
+                <div class="upload-area" id="uploadArea">
+                    <div class="upload-icon">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                    </div>
+                    <h3>Drop files here or click to browse</h3>
+                    <p>Maximum file size: 5GB</p>
+                    <input type="file" id="fileInput" multiple hidden>
+                </div>
+
+                <div class="file-list" id="fileList"></div>
+
+                <div class="share-section" id="shareSection" style="display: none;">
+                    <div class="share-id-container">
+                        <h3>Share ID Generated</h3>
+                        <div class="share-id" id="shareId">
+                            <span id="generatedId"></span>
+                            <button class="copy-btn" id="copyBtn">
+                                <i class="fas fa-copy"></i>
+                            </button>
+                        </div>
+                        <p class="share-info">Share this ID with the recipient. Expires in 24 hours.</p>
+                    </div>
+                    
+                    <div class="qr-code" id="qrCode">
+                        <canvas id="qrCanvas"></canvas>
+                        <p>Scan QR code to download</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Receive Mode -->
+            <div class="mode-content receive-mode">
+                <div class="receive-container">
+                    <div class="receive-icon">
+                        <i class="fas fa-key"></i>
+                    </div>
+                    <h3>Enter Share ID</h3>
+                    <div class="id-input-container">
+                        <input type="text" id="receiveId" placeholder="Enter 6-digit ID" maxlength="6">
+                        <button class="download-btn" id="downloadBtn">
+                            <i class="fas fa-download"></i>
+                            Download
+                        </button>
+                    </div>
+                    <p class="receive-info">Enter the 6-digit ID shared by the sender</p>
+                </div>
+
+                <div class="download-progress" id="downloadProgress" style="display: none;">
+                    <div class="progress-info">
+                        <h4 id="downloadFileName">Downloading...</h4>
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="progressFill"></div>
+                        </div>
+                        <span class="progress-text" id="progressText">0%</span>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Features Section -->
+        <section class="features">
+            <div class="feature">
+                <div class="feature-icon">
+                    <i class="fas fa-bolt"></i>
+                </div>
+                <h4>Lightning Fast</h4>
+                <p>Direct P2P transfer with maximum speed</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h4>End-to-End Encrypted</h4>
+                <p>Your files are encrypted and secure</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">
+                    <i class="fas fa-user-secret"></i>
+                </div>
+                <h4>Anonymous</h4>
+                <p>No registration or login required</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">
+                    <i class="fas fa-mobile-alt"></i>
+                </div>
+                <h4>Cross-Platform</h4>
+                <p>Works on all devices and platforms</p>
+            </div>
+        </section>
+
+        <!-- Status Bar -->
+        <div class="status-bar" id="statusBar">
+            <div class="status-content">
+                <i class="fas fa-info-circle"></i>
+                <span id="statusText">Ready to share files</span>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode/1.5.3/qrcode.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
